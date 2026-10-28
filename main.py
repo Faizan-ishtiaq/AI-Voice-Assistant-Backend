@@ -25,7 +25,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000","https://ai-voice-assistant-frontend-rosy.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -38,6 +38,10 @@ class Speak(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str
+
+@app.get("/")
+def home():
+    return {"message": "Voice Assistant API is running!"}    
 
 
 @app.post("/speak")
